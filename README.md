@@ -1,9 +1,10 @@
 # AWS EC2 Instance Terraform module with SSH
 This is a simple module for creating EC2 instance with SSH Access. 
 
-# AWS EC2 Instance Terraform module
-
-Terraform module which creates EC2 instance(s) on AWS.
+* This module will create required security groups for SSH
+* This module is designed to take advantage of local keys (`id_rsa` & `id_rsa.pub`)
+* If you're using `id_rsa.pub` on your local machine then you can connect remote machine with simple commands.
+    * Example: `ssh ec2-user@56.45.9.121`.
 
 These types of resources are supported:
 
@@ -12,6 +13,7 @@ These types of resources are supported:
 ## Terraform versions
 
 Terraform 0.12. Pin module version to `~> v2.0`. 
+
 
 ## Usage
 
@@ -37,8 +39,8 @@ module "ec2_cluster" {
 |------|-------------|:----:|:-----:|:-----:|
 | region | Region where to spin up EC2 instance | string | n/a | yes |
 | ami\_id | ID of AMI to use for the instance | string | n/a | yes |
-| vpc\_id | VPC ID | string | `"standard"` | yes |
-| public\_key | Location of Public ID on workstation | bool | `"false"` | yes |
+| vpc\_id | VPC ID | string | n/a | yes |
+| public\_key | Location of Public ID on workstation | string | n/a | yes |
 
 ## Outputs
 
@@ -46,6 +48,7 @@ module "ec2_cluster" {
 |------|-------------|
 | ec2\_ip | Public IP address for instance  |
 | ec2\_id | Instance ID |
+___
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
