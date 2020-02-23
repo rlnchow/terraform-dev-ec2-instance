@@ -13,7 +13,6 @@ data "aws_subnet" "example" {
 }
 
 resource "aws_key_pair" "ec2-keypair" {
-  key_name   = "dev-machine-key"
   public_key = data.local_file.id_rsa_pub.content
 }
 
